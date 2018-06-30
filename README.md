@@ -1,5 +1,5 @@
 # Snake-Game
-#### Version 3.1
+### Version 3.1
 A Simple Snake Eating Game That You Will Have A Blue Snake(3 Connected Dots) Which Will Try To Eat The Red Apple(A Single Dot).
 
 ### [Play The Game Online! - Click Here](https://gnn.liangyang.me/games/snake/)
@@ -15,9 +15,9 @@ Left Arrow: Move Left
 Right Arrow: Move Right
 
 ## Versions
-Version 3.1 - 24/05/2018: Released On gnn.liangyang.me/games/snake/ And lianghub.com/games.snake/
+Version 3.3 - 24/05/2018: Released On gnn.liangyang.me/games/snake/ And lianghub.com/games.snake/
 
-Version 3.0 - 22/04/2018: Change From Bootstrap 4 To 5
+Version 3.2 - 22/04/2018: Change From Bootstrap 4 To 5
 
 Version 3.1 - 20/08/2018: Released README.md
 
