@@ -1,5 +1,5 @@
 # Snake-Game
 A simple snake eating game.
 
-#### [Play The Game Online! - Visit Here](gnn.lianghub.com/snake/)
-###### Or here - gnn.lianghub.com/
+### [Play The Game Online! - Click Here](gnn.liangyang.me/snake/)
+### [Or My Awesome Website! - Click Here](gnn.liangyang.me/)
