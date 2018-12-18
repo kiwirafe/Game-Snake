@@ -1,31 +1,61 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var width = canvas.width;
-var height = canvas.height;
+var container = document.getElementById("container");
+var containerStyle = container.currentStyle || window.getComputedStyle(container);
+document.getElementById('innerContainer').style.marginLeft = containerStyle.marginLeft;
+document.getElementById('innerContainer').style.marginRight = containerStyle.marginRight;
+container.style.marginLeft = "0";
+container.style.marginRight = "0";
+container.style.paddingLeft = "0";
+container.style.paddingRight = "0";
+document.getElementById('canvas').setAttribute('width', (window.outerWidth - 20).toString() + "px");
+document.getElementById('canvas').setAttribute('height', (window.outerHeight - 570).toString() + "px");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const width = canvas.width;
+const height = canvas.height;
 var blockSize = 10;
-var widthInBlocks = width / blockSize;
-var heightInBlocks = height / blockSize;
+for (i = 8; i < 20; i++) {
+    if (width % i == 0 && height % i == 0) {
+        blockSize = i;
+    }
+}
+if (blockSize == 10) {
+    for (i = 8; i < 20; i++) {
+        if (height % i == 0) {
+            blockSize = i;
+        }
+    }
+}
+if (blockSize == 10) {
+    for (i = 8; i < 20; i++) {
+        if (width % i == 0) {
+            blockSize = i;
+        }
+    }
+}
+alert(blockSize)
+const widthInBlocks = Math.trunc(width / blockSize);
+const heightInBlocks = Math.trunc(height / blockSize);
 var timeoutId;
-var changingTimeoutId;
 var timeoutNumber = 100;
+var tempTimeoutNumber = timeoutNumber;
 var running = true;
 var firstTime = true;
 var varGameOver = false;
 var changeVarGameOver = false;
-var background = document.getElementById("dropdownMenuOne");
-var backGroundValue = background.value;
-var backGroundValueReturn
+var backgroundReturn = "white";
 var snakeColorReturn = "blue";
-var snakeColor = document.getElementById("dropdownMenuThree");
-var snakeColorValue = snakeColor.value;
 var appleColorReturn = "red";
 var score = 0;
 var highScore = 0;
-var button = document.getElementById("startStop");
+const button = document.getElementById("startStop");
+const buttonUp = document.getElementById("Up");
+const buttonDown = document.getElementById("Down");
+const buttonLeft = document.getElementById("Left");
+const buttonRight = document.getElementById("Right");
 var buttonStop = true;
-var colors = ["aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgray", "darkgrey", "darkgreen", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkslategrey", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dimgrey", "dodgerblue", "firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod", "gray", "grey", "green", "greenyellow", "honeydew", "hotpink", "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgray", "lightgrey", "lightgreen", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray", "lightslategrey", "lightsteelblue", "lightyellow", "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen", "seashell", "sienna", "silver", "skyblue", "slateblue", "slategray", "slategrey", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "white", "whitesmoke", "yellow", "yellowgreen"];
-canvas.style.backgroundColor = backGroundValue;
-button.style.backgroundColor = backGroundValue;
+const colors = ["aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanchedalmond", "blue", "blueviolet", "brown", "burlywood", "cadetblue", "chartreuse", "chocolate", "coral", "cornflowerblue", "cornsilk", "crimson", "cyan", "darkblue", "darkcyan", "darkgoldenrod", "darkgray", "darkgrey", "darkgreen", "darkkhaki", "darkmagenta", "darkolivegreen", "darkorange", "darkorchid", "darkred", "darksalmon", "darkseagreen", "darkslateblue", "darkslategray", "darkslategrey", "darkturquoise", "darkviolet", "deeppink", "deepskyblue", "dimgray", "dimgrey", "dodgerblue", "firebrick", "floralwhite", "forestgreen", "fuchsia", "gainsboro", "ghostwhite", "gold", "goldenrod", "gray", "grey", "green", "greenyellow", "honeydew", "hotpink", "indianred", "indigo", "ivory", "khaki", "lavender", "lavenderblush", "lawngreen", "lemonchiffon", "lightblue", "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgray", "lightgrey", "lightgreen", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue", "lightslategray", "lightslategrey", "lightsteelblue", "lightyellow", "lime", "limegreen", "linen", "magenta", "maroon", "mediumaquamarine", "mediumblue", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumspringgreen", "mediumturquoise", "mediumvioletred", "midnightblue", "mintcream", "mistyrose", "moccasin", "navajowhite", "navy", "oldlace", "olive", "olivedrab", "orange", "orangered", "orchid", "palegoldenrod", "palegreen", "paleturquoise", "palevioletred", "papayawhip", "peachpuff", "peru", "pink", "plum", "powderblue", "purple", "red", "rosybrown", "royalblue", "saddlebrown", "salmon", "sandybrown", "seagreen", "seashell", "sienna", "silver", "skyblue", "slateblue", "slategray", "slategrey", "snow", "springgreen", "steelblue", "tan", "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "white", "whitesmoke", "yellow", "yellowgreen"];
+canvas.style.backgroundColor = "white";
+button.style.backgroundColor = "black";
 var drawBorder = function () {
     ctx.fillStyle = "Black"
     ctx.fillRect(0, 0, width, blockSize);
@@ -106,7 +136,21 @@ snake.prototype.move = function () {
     if (newHead.equal(apple.position)) {
         score++;
         apple.move()
-        timeoutNumber -= 5;
+        head = this.segments[0];
+        newHead = null;
+        if (this.direction == "right") {
+            newHead = new block(head.col + 1, head.row);
+        } else if (this.direction == "down") {
+            newHead = new block(head.col, head.row + 1);
+        } else if (this.direction == "left") {
+            newHead = new block(head.col - 1, head.row);
+        } else if (this.direction == "up") {
+            newHead = new block(head.col, head.row - 1);
+        }
+        if (timeoutNumber > 65) {
+            timeoutNumber -= 5;
+            tempTimeoutNumber = timeoutNumber
+        }
     } else {
         this.segments.pop();
     }
@@ -117,11 +161,11 @@ snake.prototype.move = function () {
     this.segments.unshift(newHead);
 };
 snake.prototype.checkCollision = function (head) {
-    var leftCollision = (head.col == 0);
-    var topCollision = (head.row == 0);
-    var rightCollision = (head.col == widthInBlocks - 1);
-    var bottomCollision = (head.row == heightInBlocks - 1);
-    var wallCollision = leftCollision || topCollision || rightCollision || bottomCollision;
+    var wallCollision = (head.col == 0 ||
+        head.row == 0 ||
+        head.col == widthInBlocks - 1 ||
+        head.row == heightInBlocks - 1
+    );
     var selfCollision = false;
     for (var c = 0; c < this.segments.length; c++) {
         if (head.equal(this.segments[c])) {
@@ -171,7 +215,7 @@ var gameOver = function () {
         bootbox.alert("Thank you for playing. Press the start button to replay.")
         varGameOver = true;
         changeVarGameOver = true;
-        button.value = "Start";
+        button.innerHTML = "Start";
         buttonStop = false;
         running = true;
     }
@@ -202,12 +246,12 @@ if (firstTime == true) {
 button.onclick = (function () {
     clearTimeout(timeoutId);
     if (buttonStop == true) {
-        button.value = "Start";
+        button.innerHTML = "Start";
         buttonStop = false;
     } else if (changeVarGameOver == true) {
         varGameOver = false;
         changeVarGameOver = false;
-        button.value = "Stop";
+        button.innerHTML = "Stop";
         buttonStop = true;
         running = true;
         snake.segments = [
@@ -221,7 +265,7 @@ button.onclick = (function () {
         timeout();
         return;
     } else {
-        button.value = "Stop";
+        button.innerHTML = "Stop";
         buttonStop = true;
     }
     running = !running;
@@ -234,7 +278,7 @@ var directions = {
     37: "left",
     38: "up",
     39: "right",
-    40: "down"
+    40: "down",
 };
 $("body").keydown(function (event) {
     var newDirection = directions[event.keyCode];
@@ -242,29 +286,52 @@ $("body").keydown(function (event) {
         snake.setDirection(newDirection);
     }
 });
-function changeBackgroundColor(backgroundColorChange) {
-    if (backgroundColorChange != snakeColorReturn && backgroundColorChange != appleColorReturn) {
-        background.addEventListener("keydown", function (e) {
+buttonUp.onclick = function () {
+    var newDirection = "up";
+    if (newDirection !== undefined) {
+        snake.setDirection(newDirection);
+    }
+}
+buttonDown.onclick = function () {
+    var newDirection = "down";
+    if (newDirection !== undefined) {
+        snake.setDirection(newDirection);
+    }
+}
+buttonLeft.onclick = function () {
+    var newDirection = "left";
+    if (newDirection !== undefined) {
+        snake.setDirection(newDirection);
+    }
+}
+buttonRight.onclick = function () {
+    var newDirection = "right";
+    if (newDirection !== undefined) {
+        snake.setDirection(newDirection);
+    }
+}
+function changeBackgroundColor(newBackgroundColor) {
+    if (newBackgroundColor != snakeColorReturn && newBackgroundColor != appleColorReturn) {
+        document.getElementById("dropdownMenu1").addEventListener("keydown", function (e) {
             if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
                 e.preventDefault();
             }
         });
-        canvas.style.backgroundColor = backgroundColorChange;
-        document.getElementById("startStop").style.backgroundColor = backgroundColorChange;
-        backgroundColor = backgroundColorChange;
+        canvas.style.backgroundColor = newBackgroundColor;
+        backgroundReturn = newBackgroundColor;
+
     } else {
         bootbox.alert("Please choose another color.");
     }
 }
 function submitBackgroundColor() {
-    var varInputOne = document.getElementById("inputOne").value.toLowerCase();
-    if (varInputOne != snakeColorReturn && varInputOne != appleColorReturn) {
+    var varInput1 = document.getElementById("input1").value.toLowerCase();
+    if (varInput1 != snakeColorReturn && varInput1 != appleColorReturn) {
         for (var d = 0; d < colors.length; d++) {
-            if (colors[d] == varInputOne) {
-                document.getElementById("startStop").style.backgroundColor = varInputOne;
-                canvas.style.backgroundColor = varInputOne;
-                document.getElementById("inputOne").value = "";
-                backgroundColor = varInputOne;
+            if (colors[d] == varInput1) {
+                canvas.style.backgroundColor = varInput1;
+                document.getElementById("input1").value = "";
+                backgroundReturn = varInput1;
                 return;
             }
         }
@@ -273,11 +340,51 @@ function submitBackgroundColor() {
         return;
     }
     bootbox.alert("It's not a color!");
-    document.getElementById("inputOne").value = "";
+    document.getElementById("input1").value = "";
+}
+function changeButtonColor(newButtonColor) {
+    document.getElementById("dropdownMenu1").addEventListener("keydown", function (e) {
+        if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
+            e.preventDefault();
+        }
+    });
+    if (newButtonColor == "black") {
+        button.style.color = "white";
+        buttonUp.style.color = "white";
+        buttonDown.style.color = "white";
+        buttonLeft.style.color = "white";
+        buttonRight.style.color = "white";
+    } else if (newButtonColor == "white") {
+        button.style.color = "black";
+        buttonUp.style.color = "black";
+        buttonDown.style.color = "black";
+        buttonLeft.style.color = "black";
+        buttonRight.style.color = "black";
+    }
+    button.style.backgroundColor = newButtonColor;
+    buttonUp.style.backgroundColor = newButtonColor;
+    buttonDown.style.backgroundColor = newButtonColor;
+    buttonLeft.style.backgroundColor = newButtonColor;
+    buttonRight.style.backgroundColor = newButtonColor;
+}
+function submitButtonColor() {
+    var varInput4 = document.getElementById("input4").value.toLowerCase();
+    for (var f = 0; f < colors.length; f++) {
+        if (colors[f] == varInput4) {
+            button.style.backgroundColor = varInput4;
+            document.getElementById("input4").value = "";
+            if (varInput4 == "black") {
+                button.style.color = "white";
+            } else if (varInput4 == "white") {
+                button.style.color = "black";
+            }
+        }
+    }
+    document.getElementById("input4").value = "";
 }
 function changeSnakeColor(newSnakeColor) {
-    if (newSnakeColor != backGroundValueReturn && newSnakeColor != appleColorReturn) {
-        snakeColor.addEventListener("keydown", function (e) {
+    if (newSnakeColor != backgroundReturn && newSnakeColor != appleColorReturn) {
+        document.getElementById("dropdownMenu2").addEventListener("keydown", function (e) {
             if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
                 e.preventDefault();
             }
@@ -286,24 +393,24 @@ function changeSnakeColor(newSnakeColor) {
         snakeColorReturn = newSnakeColor;
         timeout();
         buttonStop = true;
-        button.value = "Stop";
+        button.innerHTML = "Stop";
         running = true;
     } else {
         bootbox.alert("Please choose another color.");
     }
 }
 function submitSnakeColor() {
-    var varInputTwo = document.getElementById("inputTwo").value.toLowerCase();
-    if (varInputTwo != backGroundValueReturn && varInputTwo != appleColorReturn) {
+    var varInput2 = document.getElementById("input2").value.toLowerCase();
+    if (varInput2 != backgroundReturn && varInput2 != appleColorReturn) {
         for (var e = 0; e < colors.length; e++) {
-            if (colors[e] == varInputTwo) {
+            if (colors[e] == varInput2) {
                 clearTimeout(timeoutId);
-                snakeColorReturn = varInputTwo;
+                snakeColorReturn = varInput2;
                 timeout();
-                buttonStop = false;
-                button.value = "Stop";
+                buttonStop = true;
+                button.innerHTML = "Stop";
                 running = true;
-                document.getElementById("inputTwo").value = "";
+                document.getElementById("input2").value = "";
                 return;
             }
         }
@@ -311,54 +418,54 @@ function submitSnakeColor() {
         bootbox.alert("Please choose another color.");
     }
     bootbox.alert("It's not a color!");
-    document.getElementById("inputTwo").value = "";
+    document.getElementById("input2").value = "";
 }
 function changeAppleColor(newAppleColor) {
-    if (newAppleColor != snakeColorReturn && newAppleColor != backGroundValueReturn) {
-        snakeColor.addEventListener("keydown", function (e) {
+    if (newAppleColor != snakeColorReturn && newAppleColor != backgroundReturn) {
+        document.getElementById("dropdownMenu3").addEventListener("keydown", function (e) {
             if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
                 e.preventDefault();
             }
         });
         clearTimeout(timeoutId);
         appleColorReturn = newAppleColor;
-        if (!running == true) {
+        if (running != true) {
             bootbox.alert("The color of apple will change when you press the start button");
             buttonStop = false;
-            button.value = "Start";
+            button.innerHTML = "Start";
             return;
         } else {
             timeout();
             buttonStop = true;
-            button.value = "Stop";
+            button.innerHTML = "Stop";
         }
     } else {
         bootbox.alert("Please choose another color.");
     }
 }
 function submitAppleColor() {
-    var varInputThree = document.getElementById("inputThree").value.toLowerCase();
-    if (varInputThree != snakeColorReturn && varInputThree != backGroundValueReturn) {
+    var varInput3 = document.getElementById("input3").value.toLowerCase();
+    if (varInput3 != snakeColorReturn && varInput3 != backgroundReturn) {
         if (running == true) {
             running = false;
         } else {
             running = true;
         }
         for (var e = 0; e < colors.length; e++) {
-            if (colors[e] == varInputThree) {
+            if (colors[e] == varInput3) {
                 clearTimeout(timeoutId);
-                appleColorReturn = varInputThree;
-                document.getElementById("inputThree").value = "";
+                appleColorReturn = varInput3;
+                document.getElementById("input3").value = "";
                 running = !running;
                 if (!running == true) {
                     bootbox.alert("The color of apple will change when you press the start button");
                     buttonStop = false;
-                    button.value = "Start";
+                    button.innerHTML = "Start";
                     return;
                 } else {
                     timeout();
                     buttonStop = true;
-                    button.value = "Stop";
+                    button.innerHTML = "Stop";
                     return;
                 }
             }
@@ -367,30 +474,24 @@ function submitAppleColor() {
         bootbox.alert("Please choose another color.");
     }
     bootbox.alert("It's not a color!");
-    document.getElementById("inputThree").value = "";
+    document.getElementById("input3").value = "";
 }
 document.addEventListener("keydown", function (e) {
     if (e.keyCode == 32) {
         e.preventDefault();
         var lastKeyUpAt = 0;
         var keyDownAt = new Date();
-        changingTimeoutId = setTimeout(function () {
-            if ((+keyDownAt - +lastKeyUpAt) > -3000) {
-                timeoutNumber = 40;
-            } else {
-                lastKeyUpAt = new Date();
-                timeoutNumber -= 2;
-            }
-        }, 1000);
+        if (timeoutNumber > 50) {
+            timeoutNumber -= 30;
+        };
+
     }
 });
 document.addEventListener("keyup", function (e) {
     if (e.keyCode == 32) {
         e.preventDefault();
         clearTimeout(timeoutId);
-        clearTimeout(changingTimeoutId);
-        timeoutNumber = 100;
+        timeoutNumber = tempTimeoutNumber;
         timeout();
-        alert(timeoutNumber);
     }
 });

@@ -1,255 +1,220 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            SNAKE
-        </title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-        </script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js">
-        </script>
-        <style>
-            body {
-                background-image: url(GNNBackGround.jpg);
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-                background-size: cover;
-                padding: 0;
-                margin: 0;
-            }
-            canvas {
-                display: block;
-                float: inherit;
-            }
-            #startStop {
-                color: black;
-                width: 500px;
-                height: 60px;
-                border-color: black;
-                margin-top: 15px;
-                font-size: 200%;
-            }
-            .colorDropdownMenu {
-                height: 35px;
-                width: 199px;
-            }
-            .colorInput {
-                height: 30px;
-                width: 143px;
-                margin-top: 3px;
-                padding: 0;
-                border: 2px solid black;
-            }
-            .colorSubmitButton {
-                height: 30px;
-                border: 0;
-                margin: 0;
-                padding-top: 0;
-            }
-        </style>
-        {% endblock %}
-    </head>
-    <body>
-        <h1>
-             Snake Game   
-        </h1>
-        <div align="center">
-            <canvas id="canvas" width="550px" height="450px">
-            </canvas>
+<head>
+    <title>
+        SNAKE
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <style>
+        body {
+            background-image: url(GNN_BackGround.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        canvas {
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        GreatestNinja Snake
+    </h1>
+    <div align="center">
+        <canvas id="canvas">
+        </canvas>
+        <div class="container" id="innerContainer">
             <br>
-            <input id="startStop" type="button" value="Stop">
-        </div>
-        <br>
-        <div class="container">
-        <div class="col-sm-4">
-                <h3>
-                     Back-ground Color
-                </h3>
-                <form>
-                    <select id="dropdownMenuOne" onchange="changeBackgroundColor(value)" class="colorDropdownMenu">
-                         <option value="blue">
-                             Blue
-                         </option>
-                         <option value="brown">
-                             Brown
-                         </option>
-                         <option value="cyan">
-                             Cyan
-                         </option>
-                         <option value="darkblue">
-                             DarkBlue
-                         </option>
-                         <option value="darkgreen">
-                             DarkGreen
-                         </option>
-                         <option value="gray">
-                             Gray
-                         </option>
-                         <option value="green">
-                             Green
-                         </option>
-                         <option value="indigo">
-                             Indigo
-                         </option>
-                         <option value="lightblue">
-                             LightBlue
-                         </option>
-                         <option value="lightgreen">
-                             LightGreen
-                         </option>
-                         <option value="orange">
-                             Orange
-                         </option>
-                         <option value="pink">
-                             Pink
-                         </option>
-                         <option value="purple">
-                             Purple
-                         </option>
-                         <option value="red" selected="select">
-                             Red
-                         </option>
-                         <option value="white" selected="select">
-                             White
-                         </option>
-                         <option value="yellow">
-                             Yellow
-                         </option>
-                    </select>
-                    <br>
-                    <input type="text" id="inputOne" autocomplete="off" placeholder="Colors" class="colorInput">
-                    <input type="button" id="submitButtonOne" onclick="submitBackgroundColor()" value="Submit" class="colorSubmitButton">
-                 </form>
+            <div class="row">
+                <div class="col-sm">
+                    <button id="startStop" class="btn btn-danger btn-lg btn-block" type="button">
+                        Stop
+                    </button>
+                </div>
+                <div class="col-sm">
+                    <button id="Up" class="btn btn-info btn-lg" type="button">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <h3>
-                     Snake's Color
-                 </h3>
-                 <form>
-                     <select id="dropdownMenuTwo" onchange="changeSnakeColor(value)" class="colorDropdownMenu">
-                         <option value="blue" selected="select">
-                             Blue
-                         </option>
-                         <option value="brown">
-                             Brown
-                         </option>
-                         <option value="cyan">
-                             Cyan
-                         </option>
-                         <option value="darkblue">
-                             DarkBlue
-                         </option>
-                         <option value="darkgreen">
-                             DarkGreen
-                         </option>
-                         <option value="gray">
-                             Gray
-                         </option>
-                         <option value="green">
-                             Green
-                         </option>
-                         <option value="indigo">
-                             Indigo
-                         </option>
-                         <option value="lightblue">
-                             LightBlue
-                         </option>
-                         <option value="lightgreen">
-                             LightGreen
-                         </option>
-                         <option value="orange">
-                             Orange
-                         </option>
-                         <option value="pink">
-                             Pink
-                         </option>
-                         <option value="purple">
-                             Purple
-                         </option>
-                         <option value="red">
-                             Red
-                         </option>
-                         <option value="white">
-                             White
-                         </option>
-                         <option value="yellow">
-                             Yellow
-                         </option>
-                    </select>
-                    <br>
-                    <input type="text" id="inputTwo" autocomplete="off" placeholder="Colors"  class="colorInput">
-                    <input type="button" id="submitButtonTwo" value="Submit" class="colorSubmitButton" onclick="submitSnakeColor()">
-                 </form>
+            <div class="row">
+                <div class="col-sm">
+                    <a href="HungrySnake.apk" download="HungrySnake.apk">
+                        <button class="btn btn-primary btn-lg btn-block" type="button">
+                            Download For Android <i class="fas fa-download"></i>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <button id="Left" class="btn btn-info btn-lg" type="button">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button id="Down" class="btn btn-info btn-lg" type="button">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                    <button id="Right" class="btn btn-info btn-lg" type="button">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <h3>
-                     Apple's Color
-                 </h3>
-                 <form>
-                     <select id="dropdownMenuThree" onchange="changeAppleColor(value)" class="colorDropdownMenu">
-                         <option value="blue">
-                             Blue
-                         </option>
-                         <option value="brown">
-                             Brown
-                         </option>
-                         <option value="cyan">
-                             Cyan
-                         </option>
-                         <option value="darkblue">
-                             DarkBlue
-                         </option>
-                         <option value="darkgreen">
-                             DarkGreen
-                         </option>
-                         <option value="gray">
-                             Gray
-                         </option>
-                         <option value="green">
-                             Green
-                         </option>
-                         <option value="indigo">
-                             Indigo
-                         </option>
-                         <option value="lightblue">
-                             LightBlue
-                         </option>
-                         <option value="lightgreen">
-                             LightGreen
-                         </option>
-                         <option value="orange">
-                             Orange
-                         </option>
-                         <option value="pink">
-                             Pink
-                         </option>
-                         <option value="purple">
-                             Purple
-                         </option>
-                         <option value="red" selected="select">
-                             Red
-                         </option>
-                         <option value="white">
-                             White
-                         </option>
-                         <option value="yellow">
-                             Yellow
-                         </option>
-                    </select>
-                    <br>
-                    <input type="text" id="inputThree" autocomplete="off" placeholder="Colors"  class="colorInput">
-                    <input type="button" id="submitButtonThree" value="Submit" class="colorSubmitButton" onclick="submitAppleColor()">
-                 </form>
+            <br>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Change Background's Color
+                        </button>
+                        <div id="dropdownMenu1" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('cyan')">Cyan</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('gray')">Gray</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('indigo')">Indigo</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input1" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitBackgroundColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Change Snake's Color
+                        </button>
+                        <div id="dropdownMenu2" class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('cyan')">Cyan</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('gray')">Gray</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('indigo')">Indigo</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input2" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitSnakeColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Change Apple's Color
+                        </button>
+                        <div id="dropdownMenu3" class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                            <a class="dropdown-item" href="javascript:changeAppleColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('cyan')">Cyan</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('gray')">Gray</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('indigo')">Indigo</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input3" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitAppleColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Change Buttons' Color
+                        </button>
+                        <div id="dropdownMenu4" class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                            <a class="dropdown-item" href="javascript:changeButtonColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('cyan')">Cyan</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('gray')">Gray</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('indigo')">Indigo</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input4" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitButtonColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <script src="index.js">
-        </script>
-    </body>
+    </div>
+    <script src="{% static 'games/snake.js' %}"></script>
+</body>
+
 </html>
