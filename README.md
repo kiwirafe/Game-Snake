@@ -14,27 +14,33 @@ Left Arrow: Move Left
 
 Right Arrow: Move Right
 
+Space - Fast Forward
+
 ## Versions
-Version 3.3 - 24/05/2018: Released On gnn.liangyang.me/games/snake/ And lianghub.com/games.snake/
-
-Version 3.2 - 22/04/2018: Change From Bootstrap 4 To 5
-
-Version 3.1 - 20/08/2018: Released README.md
-
-Version 3.0 - 20/08/2018: Released On github.com/kiwirafe/Snake/
-
-Version 2.4 - 09/08/2017: Released On gnn.lianghub.com/games/snake/
-
-Version 2.3 - 30/06/2017: Bug Fix
-
-Version 2.2 - 26/06/2017: Allowed To Change Background
-
-Version 2.1 - 18/05/2017: Bug Fix
-
-Version 2.0 - 12/05/2017: Allowed To Change Snake & Apple's Colour
-
-Version 1.1 - 18/04/2017: Game Released On gnn.lianghub.com/snake/
-
-Version 1.0 - 16/04/2017: Game Created
-
-
+*   Version 2.5.3: Added Github Link In The Website
+*   Version 2.5.2: Bug Fix With Scrolling Sysytem
+*   Version 1.5.0: Added Keys For Mobile Devices
+*   Version 2.5.0 Added Snake APK Download And Bug Fix With The Buttons In Mobile Devices
+*   Version 2.4.1: Added Images To README.md
+*   Version 2.4.0: Change Height and Width On Different Devices
+*   Version 2.3.2: Fixed Bugs With The Speeding Up System And Added It In The Controls
+*   Version 2.3.1: Removed from gnn.lianghub.com (Website No Longer Exist)
+*   Version 2.3.0: Released On gnn.liangyang.me/games/snake/ And gnn.lianghub.com/games/snake/
+*   Version 2.2.1: Change Dropdowns To Dropups To Fit
+*   Version 2.2.0: Change From Bootstrap 4 To 5
+*   Version 2.0.2: Updated README.md By Adding Versions, Links, And Controls
+*   Version 2.0.1: Released README.md
+*   Version 2.0.0: Released On github.com/kiwirafe/Snake/ And gnn.lianghub.com/games/snake/
+*   Version 1.5.0: Bug Fix With Bootbox
+*   Version 1.5.1: Added Bootbox
+*   Version 1.5.0: Added Bootstrap
+*   Version 1.4.0: Added Start / Stop Button
+*   Version 1.3.1: Bug Fix Fast Forward Feature
+*   Version 1.3.0: Added Fast Forward Feature
+*   Version 1.2.2: Added Typing Colors Feature
+*   Version 1.2.1: Bug Fix With The Changing Color Problem
+*   Version 1.2.0: Allowed To Change Bakground Colors By Typing
+*   Version 1.1.2: Added Library With JavaScript Colors So Your Can't Type Colors Wrong
+*   Version 1.1.1: Allowed To Change Snake Colors By Typing
+*   Version 1.1.0: Allowed To Change Snake & Apple's Color
+*   Version 1.0.0: Game Released On gnn.lianghub.com/snake/
