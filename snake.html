@@ -1,10 +1,6 @@
-{% extends "index/base.html" %}
-{% load static %}
 <!DOCTYPE html>
 <html>
-
 <head>
-    {% block head %}
     <title>
         SNAKE
     </title>
@@ -15,16 +11,12 @@
             margin-right: 10px;
         }
     </style>
-    {% endblock %}
 </head>
 
 <body>
-    {% block title %}
     <h1>
         GreatestNinja Snake
     </h1>
-    {% endblock %}
-    {% block body %}
     <div align="center">
         <canvas id="canvas">
         </canvas>
@@ -63,18 +55,6 @@
                 </div>
             </div>
             <br>
-            {% if user.is_active == False %}
-            <h4 style="text-align: center">
-                <a href="{% url 'login' %}">
-                    Log In
-                </a>
-                 or 
-                <a href="{% url 'register' %}">
-                    Sign Up
-                </a>
-                    to save your score.
-            </h4>
-            {% endif %}
             <br>
             <div class="row">
                 <div class="col-sm">
@@ -233,8 +213,8 @@
             </div>   
         </div>
     </div>
-    <script src="{% static 'games/snake.js' %}"></script>
-    <script src="{% static 'games/SnakeChangeColors.js' %}"></script>
+    <script src="snake.js"></script>
+    <script src="SnakeChangeColors"></script>
     {% endblock %}
 </body>
 
