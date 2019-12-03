@@ -1,0 +1,241 @@
+{% extends "index/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% block head %}
+    <title>
+        SNAKE
+    </title>
+    <style>
+        canvas {
+            text-align: center;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+    {% endblock %}
+</head>
+
+<body>
+    {% block title %}
+    <h1>
+        GreatestNinja Snake
+    </h1>
+    {% endblock %}
+    {% block body %}
+    <div align="center">
+        <canvas id="canvas">
+        </canvas>
+        <div class="container" id="innerContainer">
+            <br>
+            <div class="row">
+                <div class="col-sm">
+                    <button id="startStop" class="btn btn-danger btn-lg btn-block" type="button">
+                        Stop
+                    </button>
+                </div>
+                <div class="col-sm" id="UpDiv">
+                    <button id="Up" class="btn btn-primary btn-lg" type="button">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row" id="row1">
+                <div class="col-sm">
+                    <a href="{% static 'games/HungrySnake.apk' %}" download="HungrySnake.apk">
+                        <button class="btn btn-primary btn-lg btn-block" id="button2"type="button">
+                            Download For Android <i class="fas fa-download"></i>
+                        </button>
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <button id="Left" class="btn btn-primary btn-lg" type="button">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button id="Down" class="btn btn-primary btn-lg" type="button">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                    <button id="Right" class="btn btn-primary btn-lg" type="button">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <br>
+            {% if user.is_active == False %}
+            <h4 style="text-align: center">
+                <a href="{% url 'login' %}">
+                    Log In
+                </a>
+                 or 
+                <a href="{% url 'register' %}">
+                    Sign Up
+                </a>
+                    to save your score.
+            </h4>
+            {% endif %}
+            <br>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Change Background's Color
+                        </button>
+                        <div id="dropdownMenu1" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeBackgroundColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input1" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitBackgroundColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Change Snake's Color
+                        </button>
+                        <div id="dropdownMenu2" class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeSnakeColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input2" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitSnakeColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Change Apple's Color
+                        </button>
+                        <div id="dropdownMenu3" class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                            <a class="dropdown-item" href="javascript:changeAppleColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeAppleColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input3" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitAppleColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm">
+                    <div class="btn-group dropup">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Change Buttons' Color
+                        </button>
+                        <div id="dropdownMenu4" class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                            <a class="dropdown-item" href="javascript:changeButtonColor('blue')">Blue</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('brown')">Brown</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('darkBlue')">DarkBlue</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('darkGreen')">DarkGreen</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('green')">Green</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('lightBlue')">LightBlue</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('lightGreen')">LightGreen</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('orange')">Orange</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('pink')">Pink</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('purple')">Purple</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('red')">Red</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('white')">White</a>
+                            <a class="dropdown-item" href="javascript:changeButtonColor('yellow')">Yellow</a>
+                        </div>
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input4" autocomplete="off" placeholder="Colors">
+                            <span class="input-group-btn">
+                                <button onclick="submitButtonColor()" class="btn btn-success" type="button">
+                                    Submit
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </br>
+            <div class="row">
+                <div class="col-sm">
+                    <a href="{% url 'SnakeVersions' %}">
+                        <button class="btn btn-info btn-lg btn-block" type="button">
+                            Snake Game Versions
+                        </button> 
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <a href="https://github.com/kiwirafe/Snake">
+                        <button class="btn btn-dark btn-lg btn-block" type="button">
+                            Code On Github
+                        </button> 
+                    </a>
+                </div>
+                <div class="col-sm">
+                    <button class="btn btn-primary btn-lg btn-block" type="button">
+                        Version 2.5.3
+                        Proudly Made By Kiwirafe
+                    </button> 
+                </div>
+            </div>   
+        </div>
+    </div>
+    <script src="{% static 'games/snake.js' %}"></script>
+    <script src="{% static 'games/SnakeChangeColors.js' %}"></script>
+    {% endblock %}
+</body>
+
+</html>
