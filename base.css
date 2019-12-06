@@ -1,0 +1,58 @@
+body {
+     background-image: url(GNN_BackGround.jpg);
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     background-size: cover;
+}
+body #container{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+#title {
+    text-align: center;
+}
+#title h1 {
+    text-align: center;
+    color: cyan; 
+    font-family: "Comic Sans MS";
+    display: inline;
+    font-size: 40px;
+}
+#title h4 {
+    display: inline;
+    color: blue;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: #99ccff;
+}
+@media screen and (max-width: 800px) {
+    #title h1 {
+        text-align: center;
+        color: cyan; 
+        font-family: "Comic Sans MS";
+        display: inline;
+        font-size: 35px;
+    }
+    #title h4 {
+        display: none;
+    } 
+    #navbarContent{
+        width: 50%;
+        float: left;
+        margin-top: 7.5px;
+        padding: 0;
+    }   
+    #navbar .navbar-right {
+        width: 50%;
+        float: right;
+        text-align: right;
+        vertical-align: bottom; 
+        padding: 0;
+        margin: 0;
+    }
+}
+  
