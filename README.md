@@ -2,8 +2,8 @@
 ### Version 3.3
 A Simple Snake Eating Game That You Will Have A Blue Snake(3 Connected Dots) Which Will Try To Eat The Red Apple(A Single Dot).
 
-### [Play The Game Online! - Click Here](https://gnn.liangyang.me/games/snake/)
-### [Or My Awesome Website For More Games! - Click Here](https://gnn.liangyang.me/)
+### [Play The Game Online! - Click Here](https://gnn.datavisdev.com/games/snake/)
+### [Or My Awesome Website For More Games! - Click Here](https://gnn.datavisdev.com/)
 
 ## Controls:
 Up Arrow: Move Up
@@ -14,7 +14,7 @@ Left Arrow: Move Left
 
 Right Arrow: Move Right
 
-Space - Fast Forward
+Space: Boost
 
 ## Versions
 *   Version 2.5.3: Added Github Link In The Website
