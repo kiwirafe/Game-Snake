@@ -1,5 +1,5 @@
 # Hungry Snake
-### Version 3.3
+### Version 2.5.3
 A Simple Snake Eating Game That You Will Have A Blue Snake(3 Connected Dots) Which Will Try To Eat The Red Apple(A Single Dot).
 
 ### [Play The Game Online! - Click Here](https://gnn.datavisdev.com/games/snake/)
