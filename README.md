@@ -18,10 +18,9 @@ Space: Boost
 
 ## Versions
 *   Version 2.5.3: Added Github Link In The Website
-*   Version 2.5.2: Bug Fix With Scrolling Sysytem
-*   Version 1.5.0: Added Keys For Mobile Devices
-*   Version 2.5.0 Added Snake APK Download And Bug Fix With The Buttons In Mobile Devices
-*   Version 2.4.1: Added Images To README.md
+*   Version 2.5.2: Bug Fix With Scrolling System
+*   Version 2.5.1 Added Snake APK Download And Bug Fix With The Buttons In Mobile Devices
+*   Version 2.5.0: Added Keys For Mobile Devices(Mobile Friendly)
 *   Version 2.4.0: Change Height and Width On Different Devices
 *   Version 2.3.2: Fixed Bugs With The Speeding Up System And Added It In The Controls
 *   Version 2.3.1: Removed from gnn.lianghub.com (Website No Longer Exist)
@@ -35,8 +34,8 @@ Space: Boost
 *   Version 1.5.1: Added Bootbox
 *   Version 1.5.0: Added Bootstrap
 *   Version 1.4.0: Added Start / Stop Button
-*   Version 1.3.1: Bug Fix Fast Forward Feature
-*   Version 1.3.0: Added Fast Forward Feature
+*   Version 1.3.1: Bug Fix Boost Feature
+*   Version 1.3.0: Added Boost Feature
 *   Version 1.2.2: Added Typing Colors Feature
 *   Version 1.2.1: Bug Fix With The Changing Color Problem
 *   Version 1.2.0: Allowed To Change Bakground Colors By Typing
